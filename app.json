@@ -1,0 +1,75 @@
+{
+  "expo": {
+    "name": "Sketchify",
+    "slug": "sketchify",
+    "scheme": "sketchify",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0B0B0D",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sketchify.app",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Sketchify opens your photos so you can turn them into sketches.",
+        "NSPhotoLibraryAddUsageDescription": "Sketchify saves your finished sketches to your photo library.",
+        "NSCameraUsageDescription": "Sketchify uses the camera to take a photo to sketch."
+      }
+    },
+    "android": {
+      "package": "com.sketchify.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png",
+        "backgroundColor": "#0B0B0D"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "single",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 160,
+          "backgroundColor": "#0B0B0D"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Sketchify uses the camera to take a photo to sketch.",
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Sketchify opens your photos so you can turn them into sketches."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Sketchify opens your photos so you can turn them into sketches.",
+          "savePhotosPermission": "Sketchify saves your finished sketches to your photo library.",
+          "isAccessMediaLocationEnabled": false
+        }
+      ],
+      "expo-secure-store",
+      "expo-font",
+      "expo-sharing",
+      "expo-asset"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

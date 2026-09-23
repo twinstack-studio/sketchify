@@ -1,0 +1,63 @@
+{
+  "name": "sketchify",
+  "version": "1.0.0",
+  "main": "index",
+  "dependencies": {
+    "@expo-google-fonts/fraunces": "^0.4.1",
+    "@expo-google-fonts/inter": "^0.4.2",
+    "@expo/metro-runtime": "~57.0.16",
+    "@shopify/react-native-skia": "2.6.2",
+    "@supabase/supabase-js": "^2.116.0",
+    "expo": "~57.0.24",
+    "expo-asset": "~57.0.18",
+    "expo-camera": "~57.0.5",
+    "expo-constants": "~57.0.19",
+    "expo-file-system": "~57.0.7",
+    "expo-font": "~57.0.4",
+    "expo-haptics": "~57.0.3",
+    "expo-image-manipulator": "~57.0.19",
+    "expo-image-picker": "~57.0.19",
+    "expo-linking": "~57.0.10",
+    "expo-media-library": "~57.0.5",
+    "expo-print": "~57.0.2",
+    "expo-router": "~57.0.22",
+    "expo-secure-store": "~57.0.4",
+    "expo-sharing": "~57.0.21",
+    "expo-splash-screen": "~57.0.9",
+    "expo-status-bar": "~57.0.1",
+    "expo-system-ui": "~57.0.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-gesture-handler": "~2.32.0",
+    "react-native-mmkv": "^4.3.2",
+    "react-native-nitro-modules": "^0.37.1",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2",
+    "react-native-worklets": "0.10.1",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "@types/react": "~19.2.2",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "typecheck": "tsc --noEmit",
+    "render-shaders": "node --no-warnings scripts/render-shaders.mts",
+    "make-icons": "node scripts/make-icons.mjs",
+    "make-previews": "node --no-warnings scripts/make-previews.mts",
+    "web:preview": "mkdir -p public && cp node_modules/canvaskit-wasm/bin/full/canvaskit.wasm public/ && expo export -p web --output-dir dist-web"
+  },
+  "private": true,
+  "allowScripts": {
+    "@shopify/react-native-skia@2.6.2": true
+  }
+}
