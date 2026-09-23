@@ -1,6 +1,9 @@
 version: 2
 
 updates:
+  # Expo pins React Native, React and every native module to versions that
+  # work together; those move only through `npx expo install --fix` when the
+  # SDK is upgraded. Dependabot handles the rest.
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -8,6 +11,20 @@ updates:
       day: monday
       time: "06:00"
       timezone: Asia/Karachi
+    ignore:
+      - dependency-name: "expo"
+      - dependency-name: "expo-*"
+      - dependency-name: "@expo/*"
+      - dependency-name: "@expo-google-fonts/*"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "react-native"
+      - dependency-name: "react-native-*"
+      - dependency-name: "@shopify/react-native-skia"
+      - dependency-name: "@types/react"
+      - dependency-name: "typescript"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
       npm-packages:
         patterns: ["*"]

@@ -10,7 +10,7 @@
     "backgroundColor": "#0B0B0D",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sketchify.app",
+      "bundleIdentifier": "com.twinstackstudio.sketchify",
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Sketchify opens your photos so you can turn them into sketches.",
         "NSPhotoLibraryAddUsageDescription": "Sketchify saves your finished sketches to your photo library.",
@@ -18,7 +18,7 @@
       }
     },
     "android": {
-      "package": "com.sketchify.app",
+      "package": "com.twinstackstudio.sketchify",
       "adaptiveIcon": {
         "foregroundImage": "./assets/android-icon-foreground.png",
         "monochromeImage": "./assets/android-icon-monochrome.png",
