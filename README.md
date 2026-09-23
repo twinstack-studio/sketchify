@@ -45,9 +45,9 @@ for Android and iOS.
 
 ### Computer vision and image processing
 
-- **Edge detection:** Sobel gradients on luminance find the outlines that the Pencil, Ink, Comic, Cel and Neon styles draw
-- **Gaussian filtering:** 49-tap Gaussian blurs of luminance and colour, and a difference of Gaussians for clean line art
-- **Colour-dodge sketching:** the grey image divided by its own blur, the classic pencil-sketch technique, for Graphite and Charcoal
+- **Edge detection:** Sobel gradients on luminance find the outlines that the Blueprint, Comic, Cel, Watercolour and Neon styles draw
+- **Gaussian filtering:** 49-tap Gaussian blurs of luminance and colour, and a difference of Gaussians that keeps real contours for the Ink, Cross-hatch and Stipple outlines
+- **Colour-dodge sketching:** the grey image divided by its own blur, the classic pencil-sketch technique, for Graphite, Charcoal and Sepia
 - **Tone from texture:** cross-hatching, stipple dots and halftone screens build shading from the image's brightness
 - **Tone mapping:** strength, detail, contrast, brightness, grain and warmth are applied in the same shader pass
 - **Resolution-independent:** filter sizes scale with the image, so a 400 px preview and a 4096 px export look the same
