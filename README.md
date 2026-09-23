@@ -5,10 +5,12 @@
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Open_App-e8b04b.svg)](https://sketchify.twinstackstudio.com)
 [![Android APK](https://img.shields.io/badge/Android-Download_APK-e8b04b.svg)](https://github.com/twinstack-studio/sketchify/releases/latest/download/sketchify.apk)
 
-Sketchify is a mobile app that turns photos into drawings. Thirteen sketch
-styles, from graphite and ink to watercolour and neon, run as GPU shaders on
-the phone, so the preview updates live while the sliders move and no photo is
-ever uploaded. Built with React Native and Expo for Android and iOS.
+Sketchify is an AI image-processing app that turns photos into drawings. A
+computer-vision pipeline (edge detection, Gaussian and difference-of-Gaussians
+filtering, tone mapping) runs as GPU shaders on the phone, so thirteen sketch
+styles, from graphite and ink to watercolour and neon, update live while the
+sliders move and no photo is ever uploaded. Built with React Native and Expo
+for Android and iOS.
 
 [**Open the live demo**](https://sketchify.twinstackstudio.com) ·
 [**Download for Android**](https://github.com/twinstack-studio/sketchify/releases/latest/download/sketchify.apk) ·
@@ -41,9 +43,18 @@ ever uploaded. Built with React Native and Expo for Android and iOS.
 - **Safe editing:** the app asks before throwing away unsaved changes
 - **Optional cloud backup:** sign in to back sketches up; without it the app works fully offline
 
+### Computer vision and image processing
+
+- **Edge detection:** Sobel gradients on luminance find the outlines that the Blueprint, Comic, Cel, Watercolour and Neon styles draw
+- **Gaussian filtering:** 49-tap Gaussian blurs of luminance and colour, and a difference of Gaussians that keeps real contours for the Ink, Cross-hatch and Stipple outlines
+- **Colour-dodge sketching:** the grey image divided by its own blur, the classic pencil-sketch technique, for Graphite, Charcoal and Sepia
+- **Tone from texture:** cross-hatching, stipple dots and halftone screens build shading from the image's brightness
+- **Tone mapping:** strength, detail, contrast, brightness, grain and warmth are applied in the same shader pass
+- **Resolution-independent:** filter sizes scale with the image, so a 400 px preview and a 4096 px export look the same
+- **Real time on the GPU:** every style is an SkSL shader run by Skia, so a full-resolution preview redraws as the sliders move
+
 ### Engineering highlights
 
-- **GPU shaders:** every style is an SkSL shader run by Skia, so a full-resolution preview redraws as the sliders move
 - **Private by design:** photos are processed on the phone; nothing is uploaded unless the user turns on backup
 - **Fast style pickers:** style previews are rendered once, not as thirteen live shaders at the same time
 - **Locked-down backup:** the Supabase table and storage bucket use row-level security, so each user can reach only their own sketches
@@ -56,7 +67,8 @@ ever uploaded. Built with React Native and Expo for Android and iOS.
 | Layer | Stack |
 | --- | --- |
 | Framework | React Native 0.86, Expo SDK 57, expo-router |
-| Graphics | @shopify/react-native-skia (SkSL shaders) |
+| Image processing | Computer-vision filters written as SkSL GPU shaders |
+| Graphics | @shopify/react-native-skia |
 | Animation | Reanimated 4, Gesture Handler |
 | State | Zustand, persisted to MMKV |
 | Cloud backup (optional) | Supabase auth, database and storage |
