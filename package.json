@@ -7,7 +7,7 @@
     "@expo-google-fonts/inter": "^0.4.2",
     "@expo/metro-runtime": "~57.0.16",
     "@shopify/react-native-skia": "2.6.2",
-    "@supabase/supabase-js": "^2.116.0",
+    "@supabase/supabase-js": "^2.117.1",
     "expo": "~57.0.24",
     "expo-asset": "~57.0.18",
     "expo-camera": "~57.0.5",
@@ -41,7 +41,7 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@types/node": "^22.20.3",
+    "@types/node": "^22.20.4",
     "@types/react": "~19.2.2",
     "babel-plugin-react-compiler": "^1.0.0",
     "typescript": "~6.0.3"
