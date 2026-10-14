@@ -1,0 +1,101 @@
+# Sketchify
+
+[![License: All rights reserved](https://img.shields.io/badge/License-All_rights_reserved-e8b04b.svg)](./LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Open_App-e8b04b.svg)](https://sketchify.twinstackstudio.com)
+[![Android APK](https://img.shields.io/badge/Android-Download_APK-e8b04b.svg)](https://github.com/twinstack-studio/sketchify/releases/latest/download/sketchify.apk)
+
+Sketchify is an AI image-processing app that turns photos into drawings. A
+computer-vision pipeline (edge detection, Gaussian and difference-of-Gaussians
+filtering, tone mapping) runs as GPU shaders on the phone, so thirteen sketch
+styles, from graphite and ink to watercolour and neon, update live while the
+sliders move and no photo is ever uploaded. Built with React Native and Expo
+for Android and iOS.
+
+[**Open the live demo**](https://sketchify.twinstackstudio.com) ·
+[**Download for Android**](https://github.com/twinstack-studio/sketchify/releases/latest/download/sketchify.apk) ·
+[**Work with TwinStack Studio**](https://twinstackstudio.com/contact)
+
+| | | |
+| --- | --- | --- |
+| ![Studio](./screenshots/studio.png) | ![Graphite style](./screenshots/editor-graphite.png) | ![Watercolour style](./screenshots/editor-watercolour.png) |
+| ![Neon style](./screenshots/editor-neon.png) | ![Adjust sliders](./screenshots/editor-adjust.png) | ![Batch](./screenshots/batch.png) |
+
+> **Note:** the live demo is a web preview of the mobile app. Try the sample
+> photo, switch styles and move the sliders there; saving to Photos, sharing
+> and the camera work only in the app. The Android APK is signed for direct
+> installation, not the Play Store. The sample photo is from Unsplash.
+
+## What the product delivers
+
+### For users
+
+- **Thirteen styles:** Graphite, Pencil, Ink, Charcoal, Cross-hatch, Stipple, Blueprint, Noir, Sepia, Comic, Cel, Watercolour and Neon, plus the original photo
+- **Studio:** an animated before/after that cycles through the styles, a style grid with real previews, and recent sketches
+- **Try the sample:** a bundled photo opens the editor straight away, before the user picks anything
+- **Live editor:** your own photo in every style, six sliders (strength, detail, contrast, brightness, grain, warmth) with values, invert, and reset to defaults
+- **Crop, rotate and flip,** and a Compare button to see the original
+- **Batch:** sketch up to 60 photos in one style, then save them all or export one PDF
+- **Gallery:** a two-column wall of saved sketches, favourites, and a long-press menu
+- **Viewer:** a sketch full screen; swipe through, favourite, share, save, delete or edit again
+- **Camera:** in-app camera with a style picker, photo-library shortcut and front/back switch
+- **Export settings:** PNG, JPG or WebP, size up to 4096 px, optional watermark, save to Photos
+- **Safe editing:** the app asks before throwing away unsaved changes
+- **Optional cloud backup:** sign in to back sketches up; without it the app works fully offline
+
+### Computer vision and image processing
+
+- **Edge detection:** Sobel gradients on luminance find the outlines that the Blueprint, Comic, Cel, Watercolour and Neon styles draw
+- **Gaussian filtering:** 49-tap Gaussian blurs of luminance and colour, and a difference of Gaussians that keeps real contours for the Ink, Cross-hatch and Stipple outlines
+- **Colour-dodge sketching:** the grey image divided by its own blur, the classic pencil-sketch technique, for Graphite, Charcoal and Sepia
+- **Tone from texture:** cross-hatching, stipple dots and halftone screens build shading from the image's brightness
+- **Tone mapping:** strength, detail, contrast, brightness, grain and warmth are applied in the same shader pass
+- **Resolution-independent:** filter sizes scale with the image, so a 400 px preview and a 4096 px export look the same
+- **Real time on the GPU:** every style is an SkSL shader run by Skia, so a full-resolution preview redraws as the sliders move
+
+### Engineering highlights
+
+- **Private by design:** photos are processed on the phone; nothing is uploaded unless the user turns on backup
+- **Fast style pickers:** style previews are rendered once, not as thirteen live shaders at the same time
+- **Locked-down backup:** the Supabase table and storage bucket use row-level security, so each user can reach only their own sketches
+- **Instant start:** settings and the library are stored in MMKV and load synchronously, so saved sketches are there the moment the app opens
+- **Motion design:** spring press feedback, a floating tab bar, bottom sheets, toasts and haptics
+- **Tested shaders:** a script compiles every shader with CanvasKit and renders a photo in each style, so a broken shader is caught before it reaches a phone
+
+## Technology
+
+| Layer | Stack |
+| --- | --- |
+| Framework | React Native 0.86, Expo SDK 57, expo-router |
+| Image processing | Computer-vision filters written as SkSL GPU shaders |
+| Graphics | @shopify/react-native-skia |
+| Animation | Reanimated 4, Gesture Handler |
+| State | Zustand, persisted to MMKV |
+| Cloud backup (optional) | Supabase auth, database and storage |
+| Language | TypeScript, React Compiler |
+| Platforms | Android, iOS, web preview |
+
+## Architecture
+
+```mermaid
+flowchart LR
+  IN[Photo<br/>camera · library · sample] --> SH[SkSL GPU shaders on Skia<br/>Sobel · Gaussian / DoG · colour dodge · tone mapping]
+  SH --> ED[Live editor<br/>13 styles · 6 sliders]
+  ED --> EX[Export<br/>PNG · JPG · WebP · PDF batch]
+  ED --> LIB[(MMKV library<br/>on the phone)]
+  LIB -.optional.-> SB[(Supabase backup<br/>row-level security)]
+```
+
+## Source code
+
+This is the public showcase. The source code is kept in a private repository. Try the live demo above, and [contact TwinStack Studio](https://twinstackstudio.com/contact) for a walkthrough or a similar project.
+
+## Built by TwinStack Studio
+
+TwinStack Studio builds full-stack websites, web applications, mobile apps,
+dashboards, portals, automation, and AI-powered products.
+
+[GitHub](https://github.com/twinstack-studio) ·
+[Website](https://twinstackstudio.com) ·
+[Email](mailto:hello@twinstackstudio.com)
+
+© 2026 TwinStack Studio. All rights reserved. See [LICENSE](./LICENSE).
